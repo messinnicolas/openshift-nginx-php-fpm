@@ -2,7 +2,7 @@
 %global frameworkdir %{_libexecdir}/openshift/cartridges/nginx-php-fpm
 
 Name:          openshift-cartridge-nginx-php-fpm
-Version:       0.0.0.6
+Version:       0.0.0.7
 Release:       1%{?dist}
 Summary:       Php-fpm cartridge
 Group:         Development/Languages
@@ -89,6 +89,9 @@ PHP-FPM cartridge for openshift. (Cartridge Format V2)
 
 
 %changelog
+* Tue Jun 21 2016 Nicolas MESSIN <nicolas.messin@worldline.com> 0.0.0.7-1
+- Up bin conf file (nicolas.messin@worldline.com)
+
 * Tue Jun 21 2016 Nicolas MESSIN <nicolas.messin@worldline.com> 0.0.0.6-1
 - First build PHP (nicolas.messin@worldline.com)
 

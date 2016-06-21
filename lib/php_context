@@ -6,6 +6,8 @@ function php_context {
 
 function update_configuration {
    # SCL bin_dir
+   local path=$(php_context "pear -c ${OPENSHIFT_HOMEDIR}.pearrc config-get bin_dir" | tr -d '\n')
+
    path=$(path_append $path $(dirname $(scl enable php54 "which php") | tr -d '\n'))
 
    local man_path=$(MANPATH="" scl enable php54 "printenv MANPATH")

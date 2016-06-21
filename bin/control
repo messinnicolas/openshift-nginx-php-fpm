@@ -3,19 +3,18 @@
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 source $OPENSHIFT_PHP_DIR/lib/util
 source ${OPENSHIFT_PHP_DIR}/lib/php_context
+OPENSHIFT_NGINX_DIR=${OPENSHIFT_PHP_DIR}
+
 
 if [ "${NGINX_PHP_FPM_DEBUG}" == "1" ]; then
     set -x
 fi
 
-NGINX_CFG_FILE=$OPENSHIFT_PHP_DIR/configuration/etc/nginx.conf
-NGINX_PID_FILE=$OPENSHIFT_PHP_DIR/run/nginx.pid
+NGINX_EXEC=/usr/nginx12-1.2.3/sbin/nginx
+NGINX_CONFIG_FILE=$OPENSHIFT_NGINX_DIR/conf/nginx.conf
+NGINX_PID_FILE=$OPENSHIFT_NGINX_DIR/run/nginx.pid
 PHP_CFG_FILE=$OPENSHIFT_PHP_DIR/configuration/etc/php-fpm.conf
 PHP_PID_FILE=$OPENSHIFT_PHP_DIR/run/php-fpm.pid
-
-function _nginx() {
-    LD_LIBRARY_PATH=$OPENSHIFT_PHP_DIR $OPENSHIFT_PHP_DIR/usr/sbin/nginx "$@" >> $OPENSHIFT_PHP_LOG_DIR/nginx_error.log 2>&1
-}
 
 function _php-fpm() {
     php_context "php-fpm $*"
@@ -26,12 +25,22 @@ function _start_php() {
 }
 
 function _start_nginx() {
+    echo "Starting Nginx"
 
-    if ! _nginx -p $OPENSHIFT_PHP_DIR -c $NGINX_CFG_FILE -g "error_log $OPENSHIFT_PHP_LOG_DIR/nginx_error.log;"; then
-        echo 1>&2
-        cat $OPENSHIFT_PHP_LOG_DIR/nginx_error.log 1>&2
-        return 1
+    if [ -f "$NGINX_EXEC" ]; then
+
+        if [ -f "$OPENSHIFT_REPO_DIR/nginx.conf.erb" ]; then
+            oo-erb $OPENSHIFT_REPO_DIR/nginx.conf.erb > $OPENSHIFT_REPO_DIR/nginx.conf
+        fi
+
+        # nginx will always use the prefix defined at compile time unless an absolute path to the conf file is given
+        nohup "$NGINX_EXEC" -c "$NGINX_CONFIG_FILE" 2>&1
+        [ "$?" == "0" ] && wait_for_pid_file $NGINX_PID_FILE
+
+    else
+        echo "WARN: Could not find the compiled application versions/$NGINX_VERSION/bin/nginx, will not start"
     fi
+
 }
 
 function start() {
@@ -59,8 +68,6 @@ function stop() {
 }
 
 function configtest() {
-    client_message "Testing Apache *.conf files"
-    /usr/sbin/nginx -c $NGINX_CFG_FILE -g "error_log stderr;" -t
     client_message "Testing php-fpm *.conf files"
     _php-fpm -F -y $OPENSHIFT_PHP_DIR/configuration/etc/php-fpm.conf --test
     return $?

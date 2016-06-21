@@ -2,7 +2,7 @@
 %global frameworkdir %{_libexecdir}/openshift/cartridges/nginx-php-fpm
 
 Name:          openshift-cartridge-nginx-php-fpm
-Version:       0.0.0.3
+Version:       0.0.0.5
 Release:       1%{?dist}
 Summary:       Php-fpm cartridge
 Group:         Development/Languages
@@ -167,6 +167,12 @@ PHP-FPM cartridge for openshift. (Cartridge Format V2)
 
 
 %changelog
+* Tue Jun 21 2016 Nicolas MESSIN <nicolas.messin@worldline.com> 0.0.0.5-1
+- new package built with tito
+
+* Tue Jun 21 2016 Nicolas MESSIN <nicolas.messin@worldline.com>
+- new package built with tito
+
 * Wed Nov 13 2013 Getup Builder <getup@getupcloud.com> 0.0.0.3-1
 - new package built with tito
 

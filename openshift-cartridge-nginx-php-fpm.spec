@@ -13,57 +13,36 @@ Requires:      rubygem(openshift-origin-node)
 BuildArch:     noarch
 # php-5.4 scl
 Requires:      php54-php-pdo
-Requires:      php54-php-pecl-amqp
 Requires:      php54-php-enchant
-Requires:      php54-php-pecl-igbinary-devel
 Requires:      php54-php
 Requires:      php54-php-dba
-Requires:      php54-php-twig-CTwig
 Requires:      php54-php-xml
 Requires:      php54-php-pspell
 Requires:      php54-php-interbase
-Requires:      php54-php-pecl-ssh2
 Requires:      php54-php-pecl-xdebug
 Requires:      php54-php-pear
 Requires:      php54-php-gd
 Requires:      php54-php-snmp
 Requires:      php54-php-imap
-Requires:      php54-php-pecl-geoip
 Requires:      php54-php-ldap
-Requires:      php54-php-pecl-zendopcache
 Requires:      php54-php-cli
 Requires:      php54-php-devel
-Requires:      php54-php-pecl-apcu >= 4.0
 Requires:      php54-php-tidy
-Requires:      php54-php-pecl-sphinx
-Requires:      php54-php-pecl-rrd
 Requires:      php54-php-recode
-Requires:      php54-php-pecl-redis
 Requires:      php54-php-odbc
-Requires:      php54-php-pecl-xhprof
 Requires:      php54-php-intl
 Requires:      php54-php-fpm
 Requires:      php54-php-pecl-mongo
 Requires:      php54-php-xmlrpc
 Requires:      php54-php-soap
 Requires:      php54-php-process
-Requires:      php54-php-pecl-igbinary
-Requires:      php54-php-pecl-msgpack
-Requires:      php54-php-pecl-mailparse
-Requires:      php54-php-pecl-gearman
-Requires:      php54-php-pecl-radius
 Requires:      php54-php-mbstring
-Requires:      php54-php-pecl-msgpack-devel
-Requires:      php54-php-pecl-apcu-devel >= 4.0
 Requires:      php54-php-mysqlnd
 Requires:      php54-php-mcrypt
 Requires:      php54-php-pecl-imagick
 Requires:      php54-php-common
-Requires:      php54-php-pecl-http1
 Requires:      php54-php-mssql
-Requires:      php54-php-pecl-http1-devel
 Requires:      php54-php-pgsql
-Requires:      php54-php-pecl-memcache
 Requires:      php54-php-bcmath
 
 #Obsoletes: openshift-origin-cartridge-php-5.3

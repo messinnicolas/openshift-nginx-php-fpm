@@ -11,7 +11,7 @@ if [ "${NGINX_PHP_FPM_DEBUG}" == "1" ]; then
 fi
 
 NGINX_EXEC=/usr/nginx12-1.2.3/sbin/nginx
-NGINX_CONFIG_FILE=$OPENSHIFT_NGINX_DIR/conf/nginx.conf
+NGINX_CONFIG_FILE=$OPENSHIFT_NGINX_DIR/configuration/etc/nginx.conf
 NGINX_PID_FILE=$OPENSHIFT_NGINX_DIR/run/nginx.pid
 PHP_CFG_FILE=$OPENSHIFT_PHP_DIR/configuration/etc/php-fpm.conf
 PHP_PID_FILE=$OPENSHIFT_PHP_DIR/run/php-fpm.pid
